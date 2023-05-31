@@ -42,9 +42,11 @@ jobs:
 
           if [ -f "$report_path" ]; then
             code_coverage=$(grep -oP '(?<=covered=").*(?=" missed)' "$report_path")
-            echo "Code coverage value is: $code_coverage"
+            code_coverage_percent=$(awk -v coverage="$code_coverage" 'BEGIN { printf "%d", coverage }')
+
+            echo "Code coverage value is: $code_coverage_percent%"
             
-            if (( $code_coverage < 80 )); then
+            if (( $code_coverage_percent < 80.00 )); then
               echo "Variable is less than 80"
             else
               echo "Variable is equal to or greater than 80"
