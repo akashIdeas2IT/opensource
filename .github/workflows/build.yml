@@ -41,7 +41,7 @@ jobs:
       - name: Check Code Coverage
         run: |
           mvn --version
-          cd target/sonar
+          cd target
           pwd
           ls
           coverageReport=$(cat target/site/jacoco/jacoco.xml)
