@@ -38,17 +38,15 @@ jobs:
 
       - name: Check Code Coverage
         run: |
-          sudo apt-get update
-          sudo apt-get install libxml2-utils
           report_path=target/site/jacoco/jacoco.xml
 
           if [ -f "$report_path" ]; then
-            code_coverage=$(xmllint --xpath 'sum(//counter[@type="INSTRUCTION"]/@covered) div sum(//counter[@type="INSTRUCTION"]/@missed)' "$report_path")
-            code_coverage_percent=$(awk -v coverage="$code_coverage" 'BEGIN { printf "%.2f", coverage * 100 }')
+            code_coverage=$(grep -oP '(?<=covered=").*(?=" missed)' "$report_path")
+            code_coverage_percent=$(awk -v coverage="$code_coverage" 'BEGIN { printf "%.2f", (coverage / 100) * 100 }')
 
             echo "Code coverage: $code_coverage_percent%"
 
-            if (( $(echo "$code_coverage < 0.8") )); then
+            if (( $(echo "$code_coverage < 80" | bc -l) )); then
               echo "Code coverage is below 80%"
               exit 1
             fi
