@@ -38,6 +38,10 @@ jobs:
 
       - name: Check Code Coverage
         run: |
+          pwd
+          cd target
+          pwd
+          ls
           coverageReport=$(cat target/site/jacoco/jacoco.xml)
                    codeCoverage=$(parseCodeCoverageFromReport "$coverageReport")
                    if (( $(echo "$codeCoverage < 80" | bc -l) )); then
