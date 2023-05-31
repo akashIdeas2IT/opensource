@@ -45,7 +45,7 @@ jobs:
             code_coverage_percent=$(awk -v coverage="$code_coverage" 'BEGIN { printf "%.2f", (coverage / 100) * 100 }')
 
             echo "Code coverage value is: $code_coverage_percent%"
-            echo "3.0 < 80"
+            echo (3.0 < 80)
             if (($(echo "$code_coverage < 80" | bc -l) )); then
               echo "Code coverage is below 80%"
                exit 1
