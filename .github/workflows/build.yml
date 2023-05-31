@@ -46,11 +46,11 @@ jobs:
 
             echo "Code coverage value is: $code_coverage_percent%"
 
-           if (( $code_coverage_percent < 80 )); then
-            echo "Variable is less than 80"
-          else
-            echo "Variable is equal to or greater than 80"
-          fi
+            if (( $code_coverage_percent < 80 )); then
+              echo "Variable is less than 80"
+            else
+              echo "Variable is equal to or greater than 80"
+            fi
           else
             echo "JaCoCo XML report not found."
             exit 1
