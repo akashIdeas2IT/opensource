@@ -41,6 +41,7 @@ jobs:
           pwd
           cd target
           pwd
+          cd site
           ls
           coverageReport=$(cat target/site/jacoco/jacoco.xml)
                    codeCoverage=$(parseCodeCoverageFromReport "$coverageReport")
@@ -62,4 +63,5 @@ jobs:
           pwd
           cd target
           pwd
+          cd site
           ls
