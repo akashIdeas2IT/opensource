@@ -40,6 +40,7 @@ jobs:
 
       - name: Check Code Coverage
         run: |
+          mvn --version
           cd target
           pwd
           ls
