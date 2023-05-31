@@ -39,4 +39,4 @@ jobs:
           pwd
           cd target
           pwd
-          ll
+          ls
