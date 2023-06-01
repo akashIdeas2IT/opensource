@@ -9,4 +9,9 @@ public class CalculationImpl implements Calculation {
     public int add(int valueOne, int valueTwo) {
         return valueOne + valueTwo;
     }
+
+    @Override
+    public int subtract(int valueOne, int valueTwo) {
+        return valueTwo - valueOne;
+    }
 }
