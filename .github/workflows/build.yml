@@ -35,6 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
+          mvn --version
+          java --version
           mvn sonar:sonar \
             -Dsonar.projectKey=akashideas2it \
             -Dsonar.organization=akashideas2it \
