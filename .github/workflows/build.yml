@@ -37,6 +37,7 @@ jobs:
         run: |
           mvn --version
           java --version
+          mvn clean install
           mvn sonar:sonar \
             -Dsonar.projectKey=akashideas2it \
             -Dsonar.organization=akashideas2it \
