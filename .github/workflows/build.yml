@@ -35,14 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn --version
-          java --version
           mvn clean install
-          mvn sonar:sonar \
-            -Dsonar.projectKey=akashideas2it \
-            -Dsonar.organization=akashideas2it \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN
           ./mvnw -B verify sonar:sonar -Dsonar.projectKey=akashideas2it -Dsonar.organization=akashideas2it -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
       - name: Check Code Coverage
@@ -54,7 +47,7 @@ jobs:
             code_coverage_percent=$(awk -v coverage="$code_coverage" 'BEGIN { printf "%d", coverage }')
 
             echo "Code coverage value is: $code_coverage_percent%"
-            
+          
             if (( $code_coverage_percent < 80 )); then
               echo "Variable is less than 80"
               exit 0
