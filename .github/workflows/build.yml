@@ -34,7 +34,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=akashideas2it -Dsonar.organization=akashideas2it -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=akashideas2it \
+            -Dsonar.organization=akashideas2it \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=$SONAR_TOKEN
+          ./mvnw -B verify sonar:sonar -Dsonar.projectKey=akashideas2it -Dsonar.organization=akashideas2it -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
       - name: Check Code Coverage
         run: |
